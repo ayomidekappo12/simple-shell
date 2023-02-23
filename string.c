@@ -41,3 +41,43 @@ int string_compare(char *str1, char *str2)
 	else
 		return (*str1 < *str2 ? -1 : 1);
 }
+
+/**
+ * string_starts_with - Checks if haystack starts with needle.
+ * @haystack: string to search
+ * @needle: the substring to find
+ *
+ * Return: address of next char of haystack or NULL
+ */
+char *string_starts_with(const char *haystack, const char *needle)
+{
+	while (*needle)
+	{
+	if (*needle++ != *haystack++)
+		return (NULL);
+	}
+
+	return ((char *)haystack);
+}
+
+/**
+ * string_concat - concatenates two strings
+ * @dest: the destination buffer
+ * @src: the source buffer
+ *
+ * Return: pointer to destination buffer
+ */
+char *string_concat(char *dest, char *src)
+{
+	char *ret = dest;
+
+	while (*dest)
+	dest++;
+
+	while (*src)
+	*dest++ = *src++;
+
+	*dest = *src;
+
+	return (ret);
+}

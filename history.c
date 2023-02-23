@@ -9,16 +9,16 @@
 
 char *get_history_file(info_t *info)
 {
-	char *buf, *home_dir;
+	char *buf, *dir;
 
-	home_dir = _getenv(info, "HOME=");
-	if (!home_dir)
+	dir = _getenv(info, "HOME=");
+	if (!dir)
 		return (NULL);
-	buf = malloc(sizeof(char) * (_strlen(home_dir) + _strlen(HIST_FILE) + 2));
+	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
 	if (!buf)
 		return (NULL);
 	buf[0] = 0;
-	_strcpy(buf, home_dir);
+	_strcpy(buf, dir);
 	_strcat(buf, "/");
 	_strcat(buf, HIST_FILE);
 
@@ -53,7 +53,6 @@ int write_history(info_t *info)
 	}
 	_putfd(BUF_FLUSH, fd);
 	close(fd);
-
 	return (1);
 }
 
@@ -75,18 +74,14 @@ int read_history(info_t *info)
 
 	fd = open(filename, O_RDONLY);
 	free(filename);
-
 	if (fd == -1)
 		return (0);
-
 	if (!fstat(fd, &st))
 		fsize = st.st_size;
-
 	if (fsize < 2)
 		return (0);
 
 	buf = malloc(sizeof(char) * (fsize + 1));
-
 	if (!buf)
 		return (0);
 

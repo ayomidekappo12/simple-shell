@@ -20,7 +20,7 @@ char *get_history_file(info_t *info)
 		return (NULL);
 	buf[0] = 0;
 	_strcpy(buf, home_dir);
-	_strcat (buf, "/", sizeof(buf) - strlen(buf) - 1);
+	_strncat(buf, "/", sizeof(buf) - strlen(buf) - 1);
 	strcat(buf, HIST_FILE);
 
 	return (buf);

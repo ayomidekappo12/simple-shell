@@ -32,3 +32,39 @@ void free_string_array(char **string_array)
 
 	free(temp);
 }
+
+/**
+ * realloc_memory - reallocates a block of memory
+ * @ptr: pointer to the previously allocated block
+ * @old_size: byte size of the previous block
+ * @new_size: byte size of the new block
+ *
+ * Return: pointer to the newly allocated block
+ */
+void *realloc_memory(void *ptr, unsigned int old_size, unsigned int new_size)
+{
+	char *new_memory;
+
+	if (!ptr)
+		return (malloc(new_size));
+
+	if (!new_size)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	if (new_size == old_size)
+		return (ptr);
+
+	new_memory = malloc(new_size);
+	if (!new_memory)
+		return (NULL);
+
+	unsigned int copy_size = old_size < new_size ? old_size : new_size;
+
+	for (unsigned int i = 0; i < copy_size; i++)
+		new_memory[i] = ((char *)ptr)[i];
+
+	free(ptr);
+	return (new_memory);
+}

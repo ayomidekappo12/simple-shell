@@ -2,12 +2,12 @@
 
 /**
  * main - entry point
- * @argc: arg count
- * @argv: arg vector
+ * @ac: arg count
+ * @av: arg vector
  *
  * Return: 0 on success, 1 on error
  */
-int main(int argc, char **argv)
+int main(int ac, char **av)
 {
 	info_t info[] = { INFO_INIT };
 	int fd = 2;
@@ -19,18 +19,18 @@ int main(int argc, char **argv)
 			: "r" (fd));
 
 	/* Open file if specified as an argument */
-	if (argc == 2)
+	if (ac == 2)
 	{
-		fd = open(argv[1], O_RDONLY);
+		fd = open(av[1], O_RDONLY);
 		if (fd == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				_eputs(argv[0]);
+				_eputs(av[0]);
 				_eputs(": 0: Can't open ");
-				_eputs(argv[1]);
+				_eputs(av[1]);
 				_eputchar('\n');
 				_eputchar(BUF_FLUSH);
 				exit(127);
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 	read_history(info);
 
 	/* Run shell */
-	hsh(info, argv);
+	hsh(info, av);
 
 	return (EXIT_SUCCESS);
 }

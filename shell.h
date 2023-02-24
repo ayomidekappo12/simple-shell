@@ -36,18 +36,16 @@
 
 extern char **environ;
 
-
 /**
- * struct liststr - singly linked list
- * @num: the number field
- * @str: a string
- * @next: points to the next node
- */
-typedef struct liststr
+ * struct list_s - singly linked list data structure
+ * @str: character string stored in the current node
+ * @next: pointer to the next node in the list.
+*/
+typedef struct list_s
 {
 	int num;
 	char *str;
-	struct liststr *next;
+	struct list_s *next;
 } list_t;
 
 /**
@@ -224,6 +222,9 @@ char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
+
+/* function declarations */
+char *starts_with(const char *str, const char *prefix);
 
 /* toem_vars.c */
 int is_chain(info_t *, char *, size_t *);

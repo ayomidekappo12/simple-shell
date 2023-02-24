@@ -28,7 +28,6 @@ int _myexit(info_t *info)
 	info->err_num = -1;
 	return (-2);
 }
-
 /**
  * _mycd - changes the current directory of the process
  * @info: Structure containing potential and important arguments.
@@ -69,17 +68,16 @@ int _mycd(info_t *info)
 		chdir_ret = chdir((new_dir = _getenv(info, "OLDPWD=")) ? new_dir : "/");
 	}
 	else
-	{
 		chdir_ret = chdir(info->argv[1]);
-	}
 	if (chdir_ret == -1)
 		print_error(info, "can't cd to "), _eputs(info->argv[1]), _eputchar('\n');
 	else
+	{
 		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
 		_setenv(info, "PWD", getcwd(buffer, 1024));
+	}
 	return (0);
 }
-
 /**
  * print_help_message - changes the current directory of the process
  * @info: Structure containing potential arguments. Used to maintain

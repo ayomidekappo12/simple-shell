@@ -11,6 +11,7 @@ int is_cmd(info_t *info, char *path)
 {
 	struct stat file_stat;
 
+	(void)info;
 	if (!path || stat(path, &file_stat) != 0)
 		return (0);
 
@@ -74,12 +75,12 @@ char *find_path(info_t *info, char *pathstr, char *cmd)
 
 			if (!*path)
 			{
-				_strcat(path, cmd);
+				strcat(path, cmd);
 			}
 			else
 			{
-				_strcat(path, "/");
-				_strcat(path, cmd);
+				strcat(path, "/");
+				strcat(path, cmd);
 			}
 			if (is_cmd(info, path))
 			{

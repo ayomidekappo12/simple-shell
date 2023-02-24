@@ -10,9 +10,13 @@
  */
 char *fill_memory(char *memory_area, char byte_value, unsigned int num_bytes)
 {
-	for (unsigned int i = 0; i < num_bytes; i++)
-		memory_area[i] = byte_value;
+	unsigned int i = 0;
 
+	while (i < num_bytes)
+	{
+		memory_area[i] = byte_value;
+		i++;
+	}
 	return (memory_area);
 }
 
@@ -60,11 +64,9 @@ void *realloc_memory(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (!new_memory)
 		return (NULL);
 
-	unsigned int copy_size = old_size < new_size ? old_size : new_size;
-
-	for (unsigned int i = 0; i < copy_size; i++)
-		new_memory[i] = ((char *)ptr)[i];
-
+	old_size = old_size < new_size ? old_size : new_size;
+	while (old_size--)
+		new_memory[old_size] = ((char *)ptr)[old_size];
 	free(ptr);
 	return (new_memory);
 }

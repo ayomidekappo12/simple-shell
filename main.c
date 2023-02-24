@@ -12,13 +12,11 @@ int main(int ac, char **av)
 	info_t info[] = { INFO_INIT };
 	int fd = 2;
 
-	/* Update fd using inline assembly */
 	asm ("mov %1, %0\n\t"
 			"add $3, %0"
 			: "=r" (fd)
 			: "r" (fd));
 
-	/* Open file if specified as an argument */
 	if (ac == 2)
 	{
 		fd = open(av[1], O_RDONLY);
@@ -39,13 +37,9 @@ int main(int ac, char **av)
 		}
 		info->readfd = fd;
 	}
-
-/* Populate environment list and read history */
 	populate_env_list(info);
 	read_history(info);
-
-	/* Run shell */
 	hsh(info, av);
-
 	return (EXIT_SUCCESS);
 }
+

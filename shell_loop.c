@@ -108,17 +108,9 @@ void find_cmd(info_t *info)
 	}
 	else
 	{
-<<<<<<< HEAD
+
 		if (((info) || _getenv(info, "PATH=")
 					|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
-=======
-		if ((interactive(info) || _getenv(info, "PATH=")
-<<<<<<< HEAD
-			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
->>>>>>> df4ee465f9d9570d819c4a8d9d5733d19dc5803a
-=======
-					|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
->>>>>>> parent of 994b96a... update
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{

@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <string.h>
 
 /**
  * get_history_file - gets the history file
@@ -18,9 +19,16 @@ char *get_history_file(info_t *info)
 	if (!buf)
 		return (NULL);
 	buf[0] = 0;
+<<<<<<< HEAD
 	_strcpy(buf, dir);
 	_strcat(buf, "/");
 	_strcat(buf, HIST_FILE);
+=======
+	_strcpy(buf, home_dir);
+	_strncat(buf, "/", sizeof(buf) - strlen(buf) - 1);
+	strcat(buf, HIST_FILE);
+
+>>>>>>> 713fbf78f4bad42ca51e0207a8dd6d598970aa37
 	return (buf);
 }
 
@@ -101,7 +109,6 @@ int read_history(info_t *info)
 	renumber_history(info);
 	return (info->histcount);
 }
-
 /**
  * build_history_list - adds entry to a history linked list
  * @info: Structure containing potential arguments. Used to maintain

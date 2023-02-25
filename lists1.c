@@ -92,7 +92,7 @@ size_t print_list(const list_t *h)
  */
 list_t *node_starts_with(list_t *head, char *prefix, char c)
 {
-	char* p = NULL;
+	char *p = NULL;
 
 	while (head)
 	{

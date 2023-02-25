@@ -38,6 +38,7 @@ extern char **environ;
 
 /**
  * struct list_s - singly linked list data structure
+ * @num: the number field
  * @str: character string stored in the current node
  * @next: pointer to the next node in the list.
 */

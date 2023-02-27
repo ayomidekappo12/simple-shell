@@ -36,17 +36,18 @@
 
 extern char **environ;
 
+
 /**
- * struct list_s - singly linked list data structure
+ * struct liststr - singly linked list
  * @num: the number field
- * @str: character string stored in the current node
- * @next: pointer to the next node in the list.
-*/
-typedef struct list_s
+ * @str: a string
+ * @next: points to the next node
+ */
+typedef struct liststr
 {
 	int num;
 	char *str;
-	struct list_s *next;
+	struct liststr *next;
 } list_t;
 
 /**
@@ -132,9 +133,9 @@ int _putsfd(char *str, int fd);
 
 /* toem_string.c */
 int _strlen(char *);
-int string_compare(char *, char *);
-char *string_starts_with(const char *, const char *);
-char *string_concat(char *, char *);
+int _strcmp(char *, char *);
+char *starts_with(const char *, const char *);
+char *_strcat(char *, char *);
 
 /* toem_string1.c */
 char *_strcpy(char *, char *);
@@ -144,7 +145,7 @@ int _putchar(char);
 
 /* toem_exits.c */
 char *_strncpy(char *, char *, int);
-char *_strcat(char *, char *, int);
+char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 
 /* toem_tokenizer.c */
@@ -160,15 +161,15 @@ void *_realloc(void *, unsigned int, unsigned int);
 int bfree(void **);
 
 /* toem_atoi.c */
-int interactive_program(info_t *);
+int interactive(info_t *);
 int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
 /* toem_errors1.c */
-int string_to_int(char *);
+int _erratoi(char *);
 void print_error(info_t *, char *);
-int print_decimal(int, int);
+int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
@@ -223,9 +224,6 @@ char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
-
-/* function declarations */
-char *starts_with(const char *str, const char *prefix);
 
 /* toem_vars.c */
 int is_chain(info_t *, char *, size_t *);
